@@ -1,5 +1,5 @@
 # GEMMA
-GEMMA Project - Graph-based multiomic integration
+<img src="https://www.gemma-project.eu/wp-content/uploads/2019/06/eugemma.png"> <h2>GEMMA Project - Graph-based multiomic integration</h2>
 
 This is the final release of the graph-based multi-omis integration solution for GEMMA project.
 The release is based on Neo4J Community Edition.
