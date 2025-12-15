@@ -1,0 +1,4 @@
+//this command loads data and creates "GemmaPerson" nodes
+LOAD CSV WITH HEADERS FROM 'file:///gemma_person.csv' as row
+WITH row
+CREATE (g:GemmaPerson{id: row.person, gender: row.gender, DOB: row.dateofbirth, dateofdx: COALESCE(row.dateofdx, 'NA'), case_ctrl: row.case_ctrl, matched_person: row.matched_person})
