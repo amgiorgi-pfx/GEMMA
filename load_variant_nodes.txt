@@ -1,0 +1,5 @@
+//this command loads data and creates "Variant" nodes
+LOAD CSV WITH HEADERS FROM 'file:///genomics.csv' as row
+WITH row
+CREATE (v:Variant{chromosome: row.CHROM, person: row.person, ENSEMBL: row.ENSEMBL,HGNC: row.HGNC, Zygosity: row.VALUE}) 
+
