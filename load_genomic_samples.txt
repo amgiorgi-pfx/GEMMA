@@ -1,0 +1,4 @@
+//this command reads data from csv and creates "GenomicsSample" nodes
+LOAD CSV WITH HEADERS FROM 'file:///genomics_samples.csv' as row
+WITH row
+CREATE (gs:GenomicsSample{person: row.person, timepoint: row.timepoint})
