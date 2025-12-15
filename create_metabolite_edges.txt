@@ -1,0 +1,5 @@
+//this command iterates through the metabolomics datafile and creates "metabolite" edge matching it to "ReferenceMolecule" nodes
+LOAD CSV WITH HEADERS FROM 'file:///metabolomics.csv' as row
+WITH row
+MATCH (m:ReferenceMolecule{databaseName: "ChEBI", identifier : row.ChEBI}), (mt:MetabolomicsTimepoint{id : row.timepoint})
+CREATE (mt)-[:metabolite{Value: toFloat(row.val)}]->(m) 
