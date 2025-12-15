@@ -1,0 +1,5 @@
+//this command iterates through all variants and creates "variantToGene" edges matching "Variant" nodes to "ReferenceDNASequence" nodes
+LOAD CSV WITH HEADERS FROM 'file:///genomics.csv' as row
+WITH row
+MATCH (v:Variant{ENSEMBL : row.ENSEMBL}), (d:ReferenceDNASequence{databaseName: "ENSEMBL",identifier: row.ENSEMBL})
+CREATE (v)-[:variantToGene]->(d)
