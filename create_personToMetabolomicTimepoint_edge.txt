@@ -1,0 +1,6 @@
+//this command reads list of people and recursively creates "personToMetabolomicsTimepoint" edge 
+//matching each GemmaPerson node to one or more MetabolomicsTimepoint node
+LOAD CSV WITH HEADERS FROM 'file:///gemma_person.csv' as row
+WITH row
+MATCH (p:GemmaPerson{identifier : row.person}), (mt:MetabolomicsTimepoint{person : row.person})
+CREATE (p)-[:personToMetabolomicsTimepoint]->(mt) 
