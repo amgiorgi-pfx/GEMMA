@@ -1,0 +1,6 @@
+//this command iterates through variants and creates "sampleTovariant" edges matching "GenomicsSample" and "Variant" nodes
+LOAD CSV WITH HEADERS FROM 'file:///genomics.csv' as row
+WITH row
+MATCH(gs:GenomicsSample{person: row.person}), (v:Variant{person: row.person})
+CREATE (gs)-[:sampleToVariant]->(v) 
+
