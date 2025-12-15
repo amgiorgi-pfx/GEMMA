@@ -1,0 +1,5 @@
+//this command iterates through genomics samples and creates "personToGenomicsSample" edges matching them with correct "GemmaPerson" node and "GenomicsSample" nodes
+LOAD CSV WITH HEADERS FROM 'file:///genomics_samples.csv' as row
+WITH row
+MATCH (p:GemmaPerson{id : row.person}), (gs:GenomicsSample{person : row.person})
+CREATE (p)-[:personToGenomicsSample]->(gs) 
