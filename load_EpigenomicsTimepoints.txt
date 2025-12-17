@@ -1,0 +1,4 @@
+//this command loads data and creates "EpigenomicsTimepoints" nodes
+LOAD CSV WITH HEADERS FROM 'file:///epigenomics_timepoints.csv' as row
+WITH row
+create (e:EpigenomicsTimepoint{id: row.sample, person: row.person, timepoint: row.timepoint})
