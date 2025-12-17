@@ -1,0 +1,7 @@
+//this command creates index and then creates "aggrBetaMethylationToGeneProductW edges connecting "AggregatedBetaMethylation" nodes to "ReferenceRNASequence" nodes
+CREATE INDEX AggregatedBetaMethylation_ENSEMBL_INDEX FOR (a:AggregatedBetaMethylation) ON (a.ENSEMBL);
+
+LOAD CSV WITH HEADERS FROM 'file:///epigenomics_small.csv' as row
+WITH row
+MATCH (a:AggregatedBetaMethylation{sample: row.sample, ENSEMBL: row.ENSEMBL}), (g:ReferenceRNASequence{databaseName: "ENSEMBL",identifier: row.ENSEMBL})
+CREATE (a)-[:aggrBetaMethylationToGeneProduct]->(g) 
