@@ -1,0 +1,7 @@
+//this command creates index and the "epigenomicsTimepointToAggrBetaMethylation" edges
+CREATE INDEX AggregatedBetaMethylation_sample_INDEX FOR (a:AggregatedBetaMethylation) ON (a.sample);
+
+LOAD CSV WITH HEADERS FROM 'file:///epigenomics_timepoints.csv' as row
+WITH row
+MATCH (et:EpigenomicsTimepoint{id: row.sample}), (e:AggregatedBetaMethylation{sample: row.sample})
+CREATE (et)-[:epigenomicsTimepointToAggrBetaMethylation]->(e) 
