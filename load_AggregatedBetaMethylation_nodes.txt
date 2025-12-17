@@ -1,0 +1,4 @@
+//lloads data and creates "AggregatedBetaMethylation" nodes
+LOAD CSV WITH HEADERS FROM 'file:///epigenomics.csv' as row
+WITH row
+create (e:AggregatedBetaMethylation{sample: row.sample, ENSEMBL: row.ENSEMBL, CpGSitesCount: row.occurrences, avg_value: row.avg_value, timepoint: row.timepoint})
